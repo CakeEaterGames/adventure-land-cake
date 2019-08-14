@@ -3,8 +3,8 @@ game_log("warrior");
 setInterval(update,1000/4);
 
 setInterval(auto_upgrade,1000/2);
-setInterval(combat,1000/8);
-
+//setInterval(combat,1000/8);
+setInterval(combat_solo,32);
 var state = "pve";
 
 function update()
@@ -41,6 +41,36 @@ function smart_heal()
     use('use_mp');
   }
 }
+
+function combat_solo()
+{
+  loot();
+  if(character.rip || is_moving(character)) return;
+
+  var  target=get_nearest_monster({min_xp:100});
+  if(target) change_target(target);
+  else
+  {
+    set_message("No Monsters");
+    return;
+  }
+
+  if(!in_attack_range(target))
+  {
+    move(
+      character.x+(target.x-character.x)/2,
+      character.y+(target.y-character.y)/2
+    );
+    // Walk half the distance
+  }
+  else if(can_attack(target))
+  {
+    set_message("Attacking");
+    attack(target);
+  }
+}
+
+
 function combat()
 {
   if(state == "pve")
