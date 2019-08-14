@@ -37,6 +37,7 @@ function find_item(name)
 	return -1;
 }
 
+var done = false;
 function auto_combine()
 {
   for(var i=0;i<42;i++)
