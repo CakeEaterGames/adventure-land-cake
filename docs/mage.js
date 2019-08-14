@@ -127,7 +127,7 @@ function on_cm(name, data)
   if(args[0] == "pos")
   {
     var l = Math.abs(character.real_x-args[1])+Math.abs(character.real_y-args[2]);
-    if(!isMoving && l >250)
+    if(!isMoving && l >500)
     {
       isMoving = true;
       game_log("going");
