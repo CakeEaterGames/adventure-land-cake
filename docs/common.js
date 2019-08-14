@@ -88,30 +88,33 @@ function auto_combine()
   }
 }
 
+
 function auto_upgrade()
 {
   if(state == "upgrade" && character.q.upgrade === undefined)
   {
     set_message("Upgrading");
     var scrollSlot = find_item_index("scroll0");
-var targetSlot = -1;
+    var targetSlot = -1;
 
     var scrolls = quantity("scroll0");
- game_log(123);
+    game_log(123);
     var Length = character.items.length;
     for (var i = 0; i < Length; i++)
     {
-       game_log(121233);
+      game_log(121233);
       var a = character.items[i];
       if(a)
       {
-          if(!a.upgrade) continue;
-          if(a.level<parent.G.items[a.name].grades[0]-1)
-          {
-             game_log(i);
-            targetSlot = i;
-            break;
-          }
+        if(!a.upgrade) continue;
+        game_log(a.level);
+        game_log(parent.G.items[a.name].grades[0]);
+        if(a.level<parent.G.items[a.name].grades[0]-1)
+        {
+          game_log(i);
+          targetSlot = i;
+          break;
+        }
       }
     }
     if(scrolls<=0)
@@ -119,12 +122,8 @@ var targetSlot = -1;
       buy("scroll0");
       return 0;
     }
-  /*  if(targets<=1)
-    {
-      buy(target);
-      return 0;
-    }*/
-     game_log(123);
-    upgrade(targetSlot,scrollSlot);
-  }
+
+  game_log(123);
+  upgrade(targetSlot,scrollSlot);
+}
 }
