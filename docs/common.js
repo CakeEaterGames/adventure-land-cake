@@ -3,10 +3,7 @@ var mage = get_player("CakeEater");
 var priest = get_player("CakePriest");
 var merch = get_player("CakeMerch");
 
-
 change_target();
-
-
 
 function handle_death() {
   setTimeout(respawn,15000);
@@ -14,7 +11,22 @@ function handle_death() {
   return true;
 }
 
+var keepItems = ["mpot0","hpot0","mpot1","hpot1","tracker"];
 
+function give_items_to_merch()
+{
+  var Length = character.items.length;
+  for (var i = 0; i < Length; i++)
+  {
+    var a = character.items[i];
+    if(a)
+    {
+      if(!keepItems.includes(a.name)){
+        send_item(merch, i, a.q)
+      }
+    }
+  }
+}
 
 
 function auto_upgrade()
