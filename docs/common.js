@@ -93,14 +93,10 @@ function auto_upgrade()
   if(state == "upgrade" && character.q.upgrade === undefined)
   {
     set_message("Upgrading");
-    var scrollSlot = -1;
-    var targetSlot = -1;
-    var minLevel = 999;
+    var scrollSlot = find_item_index("scroll0");
+var targetSlot = -1;
 
-    var scrolls = 0;
-    var targets = 0;
-
-    var target = "shoes";
+    var scrolls = quantity("scroll0");
 
     var Length = character.items.length;
     for (var i = 0; i < Length; i++)
@@ -108,22 +104,12 @@ function auto_upgrade()
       var a = character.items[i];
       if(a)
       {
-        switch(a.name)
-        {
-          case target:
-          if(a.level<minLevel)
+          if(!a.upgrade) continue;
+          if(a.level<parent.G.items[a.name].grades[0]-1)
           {
             targetSlot = i;
-            minLevel = a.level;
+            break;
           }
-          targets++;
-          break;
-
-          case "scroll0":
-          scrollSlot = i;
-          scrolls+=a.q;
-          break;
-        }
       }
     }
     if(scrolls<=0)
@@ -131,11 +117,11 @@ function auto_upgrade()
       buy("scroll0");
       return 0;
     }
-    if(targets<=1)
+  /*  if(targets<=1)
     {
       buy(target);
       return 0;
-    }
+    }*/
     upgrade(targetSlot,scrollSlot);
   }
 }
