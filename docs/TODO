@@ -1,0 +1,4 @@
+each char should have:
+solo_combat_update();
+tank_combat_update();
+kite_comdat_update();

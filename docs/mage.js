@@ -5,7 +5,6 @@ setInterval(update,1000/4);
 setInterval(auto_upgrade,1000/2);
 setInterval(combat,1000/8);
 
-change_target();
 
 var state = "idle"
 
@@ -42,66 +41,6 @@ function request_potions()
 	if(needMP) send_cm("CakeWarrior", "mp_pot");
 }
 
-function auto_upgrade()
-{
-	if(state == "upgrade" && character.q.upgrade === undefined)
-	{
-		set_message("Upgrading");
-	var scrollSlot = -1;
-	var targetSlot = -1;
-	var minLevel = 999;
-
-	var scrolls = 0;
-	var targets = 0;
-
-	var target = "wcap";
-
-	var Length = character.items.length;
-	for (var i = 0; i < Length; i++)
-	{
-   		var a = character.items[i];
-		if(a)
-		{
-			switch(a.name)
-			{
-				case target:
-					if(a.level<minLevel)
-					{
-						targetSlot = i;
-						minLevel = a.level;
-					}
-					targets++;
-					break;
-
-				case "scroll0":
-					scrollSlot = i;
-					scrolls+=a.q;
-					break;
-			}
-		}
-
-	}
-	//game_log(scrollSlot);
-	//game_log(targetSlot);
-	//game_log(scrolls);
- 	//game_log(targets);
-
-	if(scrolls<=0)
-	{
-		buy("scroll0");
-		return 0;
-	}
-	if(targets<=3)
-	{
-		//buy(target);
-		return 0;
-	}
-
-	upgrade(targetSlot,scrollSlot);
-	}
-}
-
-
 function smart_heal()
 {
 	if(character.hp<character.max_hp*0.8)
@@ -119,9 +58,7 @@ function combat()
 
 	if(character.rip || is_moving(character)) return;
 
-	var leader = get_player("CakeWarrior");
-	var priest = get_player("CakePriest");
-	var target=get_target_of(leader);
+	var target=get_target_of(warrior);
 	if(!target)
 	{
 		return;
@@ -174,11 +111,4 @@ function on_cm(name, data)
 	}
 
 	}
-}
-
-
-function handle_death() {
-    setTimeout(respawn,15000);
-	state = "idle";
-    return true;
 }
