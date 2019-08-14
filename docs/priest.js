@@ -6,7 +6,7 @@ setInterval(auto_upgrade,1000/2);
 setInterval(combat,1000/4);
 
 
-var state = "idle";
+var state = "pve";
 
 function update()
 {
