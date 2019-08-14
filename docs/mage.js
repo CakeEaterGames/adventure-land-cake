@@ -108,7 +108,7 @@ function smart_heal()
 	}else if(character.mp<character.max_mp-400)
 	{
 	   use('use_mp');
-	}
+	} 
 }
 
 function combat()
