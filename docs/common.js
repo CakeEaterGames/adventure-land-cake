@@ -48,6 +48,12 @@ function find_item_index(name)
 
 function auto_combine()
 {
+  if(quantity("cscroll0")<=0)
+  {
+    buy("cscroll0");
+    return 0;
+  }
+
   var done = false;
   if(character.q.compound === undefined)
   {
