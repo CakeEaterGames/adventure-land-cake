@@ -1,7 +1,7 @@
-var version = 7;
+var version = 8;
 
 function hello()
 {
-    game_log("Hello world7");
+    game_log("Hello world8");
 }
 hello();
