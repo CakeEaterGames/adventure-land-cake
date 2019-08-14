@@ -28,6 +28,46 @@ function give_items_to_merch()
   }
 }
 
+function find_item(name)
+{
+	for(var i=0;i<42;i++)
+	{
+		if(character.items[i] && character.items[i].name==name) return character.items[i];
+	}
+	return -1;
+}
+
+function auto_combine()
+{
+  for(var i=0;i<42;i++)
+	{
+		if(!character.items[i]) continue;
+		var item=character.items[i];
+		var def=G.items[item.name];
+		if(!def.compound) continue; // check whether the item can be compounded
+		for(var j=i+1;j<42;j++)
+		{
+			if(!character.items[j]) continue;
+			if(character.items[j].name!=character.items[i].name) continue;
+			if(character.items[j].level!=character.items[i].level) continue;
+			for(var k=j+1;k<42;k++)
+			{
+				if(!character.items[k]) continue;
+				if(character.items[k].name!=character.items[i].name) continue;
+				if(character.items[k].level!=character.items[i].level) continue;
+				if(!done) // to prevent combining multiple items in one loop
+				{
+					var offering=null;
+					// if(item.level==2) offering=find_item("offering");
+					if(item_grade(item)==2) continue; // rare item
+					if(item_grade(item)==0) compound(i,j,k,find_item("cscroll0"),offering);
+					if(item_grade(item)==1) compound(i,j,k,find_item("cscroll1"),offering);
+					done=true;
+				}
+			}
+		}
+	}
+}
 
 function auto_upgrade()
 {
