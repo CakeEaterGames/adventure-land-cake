@@ -98,17 +98,13 @@ function auto_upgrade()
     var targetSlot = -1;
 
     var scrolls = quantity("scroll0");
-    game_log(123);
     var Length = character.items.length;
     for (var i = 0; i < Length; i++)
     {
-      game_log(121233);
       var a = character.items[i];
       if(a)
       {
-        if(!a.upgrade) continue;
-        game_log(a.level);
-        game_log(parent.G.items[a.name].grades[0]);
+        if(!parent.G.items[a.name].upgrade) continue;
         if(a.level<parent.G.items[a.name].grades[0]-1)
         {
           game_log(i);
@@ -123,7 +119,6 @@ function auto_upgrade()
       return 0;
     }
 
-  game_log(123);
-  upgrade(targetSlot,scrollSlot);
-}
+    upgrade(targetSlot,scrollSlot);
+  }
 }
