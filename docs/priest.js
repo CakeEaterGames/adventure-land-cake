@@ -1,3 +1,5 @@
+game_log("priest");
+
 setInterval(update,1000/4);
 
 setInterval(auto_upgrade,1000/2);
@@ -192,4 +194,4 @@ function handle_death() {
     setTimeout(respawn,15000);
 	state = "idle";
     return true;
-} 
+}

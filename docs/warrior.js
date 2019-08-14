@@ -1,3 +1,5 @@
+game_log("warrior");
+
 setInterval(update,1000/4);
 
 setInterval(auto_upgrade,1000/2);

@@ -3,7 +3,6 @@ game_log("choosing class...");
 if(character.ctype == "merchant")
 {
   $.getScript("https://cakeeatergames.github.io/adventure-land-cake/merch.js", function() {
-    game_log("merchant");
   });
 }
 else if(character.ctype == "warrior")

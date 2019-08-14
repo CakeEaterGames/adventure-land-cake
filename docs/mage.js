@@ -1,3 +1,5 @@
+game_log("mage");
+
 setInterval(update,1000/4);
 
 setInterval(auto_upgrade,1000/2);
@@ -108,7 +110,7 @@ function smart_heal()
 	}else if(character.mp<character.max_mp-400)
 	{
 	   use('use_mp');
-	} 
+	}
 }
 
 function combat()
