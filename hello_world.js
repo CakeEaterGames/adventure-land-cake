@@ -1,5 +1,5 @@
-function hello()
+function hello2()
 {
-    game_log("Hello world");
+    game_log("Hello world2");
 }
-hello();
+hello2();
