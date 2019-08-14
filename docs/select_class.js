@@ -26,7 +26,5 @@ function load_class()
     game_log("unknown class");
   }
 
-}
-
-
 game_log("DONE!");
+}
