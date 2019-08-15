@@ -200,9 +200,9 @@ function set_party() {
   if(!character.party){
     if(character.name == "CakeWarrior")
     {
-      accept_party_invite("CakeEater");
-      accept_party_invite("CakePriest");
-      accept_party_invite("CakeMerch");
+      send_party_invite("CakeEater");
+      send_party_invite("CakePriest");
+      send_party_invite("CakeMerch");
     }else {
       send_party_request("CakeWarrior");
     }
