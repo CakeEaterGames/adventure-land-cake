@@ -2,18 +2,30 @@ game_log("priest");
 
 setInterval(update,1000/4);
 
-setInterval(auto_upgrade,1000/2);
-//setInterval(combat,1000/8);
-setInterval(combat_solo,32);
 
 var state = "idle";
 
 function update()
 {
+  time++;
   smart_heal();
   loot();
   request_potions();
+    update_state();
 }
+function update_state() {
+  common_update_state();
+  switch (state) {
+
+  }
+}
+function enter_state(s) {
+  common_enter_state(s);
+}
+function leave_state(s) {
+  common_leave_state(s);
+}
+
 
 function request_potions()
 {
