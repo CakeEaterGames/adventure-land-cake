@@ -11,7 +11,7 @@ function update()
   smart_heal();
   loot();
   request_potions();
-    update_state();
+  update_state();
 }
 function update_state() {
   common_update_state();
@@ -85,52 +85,48 @@ function combat_solo()
 
 function combat_tank(){
 
-  if(state == "pve")
+  loot();
+
+  if(character.rip || is_moving(character)) return;
+
+  var target=get_target_of(warrior);
+
+  //Heal amount is stored in char.attack;
+
+  if(character.hp<character.max_hp-950)
   {
+    heal(character);
+  }
+  else if(warrior.hp<warrior.max_hp-950)
+  {
+    heal(warrior);
+  }
+  else if(mage.hp<mage.max_hp-950)
+  {
+    heal(mage);
+  }
 
-    loot();
+  if(!target)
+  {
+    return;
+  }
 
-    if(character.rip || is_moving(character)) return;
-
-    var target=get_target_of(warrior);
-
-    //Heal amount is stored in char.attack;
-
-    if(character.hp<character.max_hp-950)
+  if(!in_attack_range(target))
+  {
+    move(
+      character.x+(target.x-character.x)/2,
+      character.y+(target.y-character.y)/2
+    );
+  }
+  else if(can_attack(target))
+  {
+    set_message("Attacking");
+    attack(target);
+    if(can_use("curse"))
     {
-      heal(character);
-    }
-    else if(warrior.hp<warrior.max_hp-950)
-    {
-      heal(warrior);
-    }
-    else if(mage.hp<mage.max_hp-950)
-    {
-      heal(mage);
+      use_skill("curse");
     }
 
-    if(!target)
-    {
-      return;
-    }
-
-    if(!in_attack_range(target))
-    {
-      move(
-        character.x+(target.x-character.x)/2,
-        character.y+(target.y-character.y)/2
-      );
-    }
-    else if(can_attack(target))
-    {
-      set_message("Attacking");
-      attack(target);
-      if(can_use("curse"))
-      {
-        use_skill("curse");
-      }
-
-    }
   }
 }
 
