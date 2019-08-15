@@ -230,6 +230,12 @@ function common_cm(name, data) {
       case "set_state":
       set_state(args[1]);
       break;
+        case "merchant_is_here":
+        if(character.name != "CakeMerch"){
+            give_items_to_merch();
+            send_gold(CakeMerch, 99999999);
+        }
+        break;
     }
   }
 }
