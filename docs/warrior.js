@@ -91,7 +91,7 @@ function combat_tank()
     if(character.rip || is_moving(character)) return;
 
     var target=get_targeted_monster();
-
+  if(target) change_target(target);
     if(!target)
     {
       target=get_nearest_monster({min_xp:100});
