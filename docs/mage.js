@@ -82,8 +82,7 @@ function combat_solo()
 
 function combat_tank()
 {
-  loot();
-
+game_log("cambat_tank");
   if(character.rip || is_moving(character)) return;
 
   var target=get_target_of(warrior);
