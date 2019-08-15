@@ -42,7 +42,7 @@ function leave_state(s) {
 function update()
 {
   time++;
-
+setPlayers();
   smart_heal();
   loot();
 

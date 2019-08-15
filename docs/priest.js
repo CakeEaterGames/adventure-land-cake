@@ -8,6 +8,7 @@ var state = "idle";
 function update()
 {
   time++;
+  setPlayers();
   smart_heal();
   loot();
   request_potions();
