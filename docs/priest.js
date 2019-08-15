@@ -41,17 +41,7 @@ function request_potions()
   if(needMP) send_cm("CakeWarrior", "mp_pot");
 }
 
-function smart_heal()
-{
-  if(character.hp<character.max_hp*0.8)
-  {
-    use('use_hp');
-  }else if(character.mp<character.max_mp*0.5)
-  {
-    use('use_mp');
-  }
-}
-
+ 
 
 function combat_solo()
 {

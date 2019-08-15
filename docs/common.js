@@ -1,9 +1,18 @@
+change_target();
+
 var warrior = get_player("CakeWarrior");
 var mage = get_player("CakeEater");
 var priest = get_player("CakePriest");
 var merch = get_player("CakeMerch");
 
-change_target();
+function setPlayers() {
+  warrior = get_player("CakeWarrior");
+  mage = get_player("CakeEater");
+  priest = get_player("CakePriest");
+  merch = get_player("CakeMerch");
+}
+
+
 
 function handle_death() {
   setTimeout(respawn,15000);
@@ -27,6 +36,33 @@ function give_items_to_merch()
     }
   }
 }
+
+function buy_potions()
+{
+  var x=character.real_x,y=character.real_y,map=character.map;
+  smart_move({to:"potions"},function(done){
+    buy("hpot0",1000-quantity("hpot0"));
+    buy("mpot0",5000-quantity("mpot0"));
+    game_log("Got the potions!","#4CE0CC");
+    smart_move({x:x,y:y,map:map});
+  });
+}
+
+function smart_heal()
+{
+  if(can_use("use_hp") || can_use("use_mp")){
+    if(character.hp<character.max_hp-500)
+    {
+      use('use_hp');
+    }
+    else if(character.mp<character.max_mp-400)
+    {
+      use('use_mp');
+    }
+  }
+}
+
+
 
 function find_item(name)
 {
@@ -123,7 +159,8 @@ function auto_upgrade()
   }
 }
 
-setInterval(set_party,10000);
+set_party();
+setInterval(set_party,5000);
 
 function set_party() {
   if(!character.party){

@@ -1,11 +1,42 @@
 game_log("warrior");
 
-setInterval(update,1000/4);
+setInterval(update,32);
 
-setInterval(auto_upgrade,1000/2);
-//setInterval(combat,1000/8);
-setInterval(combat_solo,32);
-var state = "pve";
+var state = "idle";
+set_state("combat_tank");
+function set_state(s) {
+  if(s!=state)
+  {
+    leave_state(state);
+    state = s;
+    enter_state(state)
+  }
+}
+
+/*
+combat_solo
+combat_tank
+combat_kite
+*/
+function update_state(s) {
+  switch (s) {
+    case "combat_solo":
+    combat_solo();
+    break;
+
+    case "combat_tank":
+    combat_tank();
+    break;
+
+  }
+}
+function enter_state(s) {
+
+}
+function leave_state(s) {
+
+}
+
 
 function update()
 {
@@ -16,31 +47,10 @@ function update()
 
   send_cm("CakePriest", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
 
-  // game_log("pos "+Math.round(character.real_x)+" "+Math.round(character.real_y)+" "+ character.map);
-  //send_cm("CakeEater", this);
-}
-function buy_potions()
-{
-  var x=character.real_x,y=character.real_y,map=character.map;
-  smart_move({to:"potions"},function(done){
-    buy("hpot0",1000-quantity("hpot0"));
-    buy("mpot0",5000-quantity("mpot0"));
-    game_log("Got the potions!","#4CE0CC");
-    smart_move({x:x,y:y,map:map});
-  });
+  update_state();
 }
 
 
-function smart_heal()
-{
-  if(character.hp<character.max_hp*0.8)
-  {
-    use('use_hp');
-  }else if(character.mp<character.max_mp-400)
-  {
-    use('use_mp');
-  }
-}
 
 function combat_solo()
 {
@@ -71,7 +81,7 @@ function combat_solo()
 }
 
 
-function combat()
+function combat_tank()
 {
   if(state == "pve")
   {
