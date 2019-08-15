@@ -3,7 +3,7 @@ game_log("warrior");
 setInterval(update,1000/4);
 
 var state = "";
-set_state("idle");
+set_state("combat_solo");
 
 
 /*
