@@ -124,7 +124,7 @@ function on_cm(name, data)
   if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
     var args = data.split(' ');
     //game_log(args);
-
+    
     if(args[0] == "pos")
     {
       var l = Math.abs(character.real_x-args[1])+Math.abs(character.real_y-args[2]);
