@@ -80,7 +80,7 @@ function combat_solo()
 }
 
 
-function combat()
+function combat_tank()
 {
   loot();
 
