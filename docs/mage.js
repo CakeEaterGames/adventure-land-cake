@@ -7,7 +7,7 @@ setInterval(auto_upgrade,1000/2);
 setInterval(combat_solo,32);
 
 
-var state = "pve"
+var state = "idle"
 
 
 function update()
@@ -41,7 +41,7 @@ function request_potions()
   if(needHP) send_cm("CakeWarrior", "hp_pot");
   if(needMP) send_cm("CakeWarrior", "mp_pot");
 }
- 
+
 function combat_solo()
 {
   loot();
