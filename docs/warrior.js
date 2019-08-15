@@ -1,6 +1,6 @@
 game_log("warrior");
 
-setInterval(update,32);
+setInterval(update,100);
 
 var state = "idle";
 set_state("combat_tank");
@@ -41,7 +41,7 @@ function leave_state(s) {
 function update()
 {
   time++;
-  if(time%3 == 0){
+
     smart_heal();
     loot();
 
@@ -50,7 +50,7 @@ function update()
     send_cm("CakePriest", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
 
     update_state();
-  }
+
 
 }
 
@@ -87,9 +87,6 @@ function combat_solo()
 
 function combat_tank()
 {
-  if(state == "pve")
-  {
-
     loot();
     if(character.rip || is_moving(character)) return;
 
@@ -126,8 +123,6 @@ function combat_tank()
       set_message("Attacking");
       attack(target);
     }
-  }
-
 }
 
 function on_cm(name, data)
