@@ -86,6 +86,8 @@ game_log("cambat_tank");
   if(character.rip || is_moving(character)) return;
 
   var target=get_target_of(warrior);
+  game_log(target);
+    game_log(warrior);
   if(!target)
   {
     return;
