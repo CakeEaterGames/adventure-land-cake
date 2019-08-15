@@ -14,6 +14,37 @@ function setPlayers() {
   merch = get_player("CakeMerch");
 }
 
+function set_state(s) {
+  if(s!=state)
+  {
+    leave_state(state);
+    state = s;
+    enter_state(state)
+  }
+}
+function common_update_state() {
+  switch (state) {
+    case "combat_solo":
+    combat_solo();
+    break;
+
+    case "combat_tank":
+    combat_tank();
+    break;
+
+  }
+}
+function common_enter_state(s) {
+  switch (s) {
+
+  }
+}
+function common_leave_state(s) {
+  switch (s) {
+
+  }
+}
+
 
 
 function handle_death() {
@@ -53,14 +84,14 @@ function buy_potions()
 function smart_heal()
 {
 
-    if(character.hp<character.max_hp-400 && can_use("use_hp") )
-    {
-      use('use_hp');
-    }
-    else if(character.mp<character.max_mp-400 && can_use("use_mp"))
-    {
-      use('use_mp');
-    }
+  if(character.hp<character.max_hp-400 && can_use("use_hp") )
+  {
+    use('use_hp');
+  }
+  else if(character.mp<character.max_mp-400 && can_use("use_mp"))
+  {
+    use('use_mp');
+  }
 
 }
 
@@ -187,5 +218,17 @@ function on_party_request(name)
 {
   if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
     accept_party_request(name);
+  }
+}
+
+function common_cm(name, data) {
+  if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
+    var args = data.split(' ');
+    //game_log(args);
+    switch (args[0]) {
+      case "set_state":
+      set_state(args[1]);
+      break;
+    }
   }
 }

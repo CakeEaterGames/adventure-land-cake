@@ -2,16 +2,9 @@ game_log("warrior");
 
 setInterval(update,1000/4);
 
-var state = "idle";
-set_state("combat_tank");
-function set_state(s) {
-  if(s!=state)
-  {
-    leave_state(state);
-    state = s;
-    enter_state(state)
-  }
-}
+var state = "";
+set_state("idle");
+
 
 /*
 combat_solo
@@ -19,22 +12,26 @@ combat_tank
 combat_kite
 */
 function update_state() {
+  common_update_state();
   switch (state) {
-    case "combat_solo":
-    combat_solo();
-    break;
-
-    case "combat_tank":
-    combat_tank();
-    break;
 
   }
 }
 function enter_state(s) {
-
+  common_enter_state(s);
+  switch (state) {
+    case "combat_tank":
+    send_cm("CakeEater","set_state combat_tank");
+    send_cm("CakePriest","set_state combat_tank");
+    break;
+    case "combat_solo":
+    send_cm("CakeEater","set_state combat_solo");
+    send_cm("CakePriest","set_state combat_solo");
+    break;
+  }
 }
 function leave_state(s) {
-
+  common_leave_state(s);
 }
 
 
@@ -42,32 +39,67 @@ function update()
 {
   time++;
 
-    smart_heal();
-    loot();
+  smart_heal();
+  loot();
 
-    send_cm("CakeEater", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
+  send_cm("CakeEater", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
 
-    send_cm("CakePriest", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
+  send_cm("CakePriest", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
 
-    update_state();
+  update_state();
 
 
 }
-
-
 
 function combat_solo()
 {
   loot();
   if(character.rip || is_moving(character)) return;
 
-  var  target=get_nearest_monster({min_xp:100});
-  if(target) change_target(target);
-  else
+  var target=get_nearest_monster();
+  if(!target) return;
+
+  change_target(target);
+
+  if(!in_attack_range(target))
   {
-    set_message("No Monsters");
-    return;
+    move(
+      character.x+(target.x-character.x)/2,
+      character.y+(target.y-character.y)/2
+    );
   }
+  else if(can_attack(target))
+  {
+    set_message("Attacking");
+    attack(target);
+  }
+}
+
+
+function combat_tank()
+{
+  loot();
+  if(character.rip || is_moving(character)) return;
+
+  var target=get_targeted_monster();
+  if(target) change_target(target);
+  if(!target)
+  {
+    target=get_nearest_monster({min_xp:100});
+    if(target) change_target(target);
+    else
+    {
+      set_message("No Monsters");
+      return;
+    }
+  }
+  //	if(target.target !== "CakeWarrior" && target.target !== undefined)
+  if(target.target !== "CakeWarrior" && can_use("taunt"))
+  {
+    use_skill("taunt");
+  }
+  //	game_log(target);
+  //game_log(target.target);
 
   if(!in_attack_range(target))
   {
@@ -82,47 +114,6 @@ function combat_solo()
     set_message("Attacking");
     attack(target);
   }
-}
-
-
-function combat_tank()
-{
-    loot();
-    if(character.rip || is_moving(character)) return;
-
-    var target=get_targeted_monster();
-  if(target) change_target(target);
-    if(!target)
-    {
-      target=get_nearest_monster({min_xp:100});
-      if(target) change_target(target);
-      else
-      {
-        set_message("No Monsters");
-        return;
-      }
-    }
-    //	if(target.target !== "CakeWarrior" && target.target !== undefined)
-    if(target.target !== "CakeWarrior" && can_use("taunt"))
-    {
-      use_skill("taunt");
-    }
-    //	game_log(target);
-    //game_log(target.target);
-
-    if(!in_attack_range(target))
-    {
-      move(
-        character.x+(target.x-character.x)/2,
-        character.y+(target.y-character.y)/2
-      );
-      // Walk half the distance
-    }
-    else if(can_attack(target))
-    {
-      set_message("Attacking");
-      attack(target);
-    }
 }
 
 function on_cm(name, data)

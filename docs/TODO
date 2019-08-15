@@ -28,7 +28,7 @@ messages:
   leader > all
     let's move to
     set targets
-    set combat mode(solo tank kite)
+    set combat mode(solo tank kite)  //set_state _
 
   merch > all
     give me your items
