@@ -122,3 +122,22 @@ function auto_upgrade()
     upgrade(targetSlot,scrollSlot);
   }
 }
+
+
+send_party_request("CakeWarrior");
+send_party_request("CakeEater");
+send_party_request("CakePriest");
+send_party_request("CakeMerch");
+
+function on_party_invite(name)
+{
+  if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
+    accept_party_invite(name);
+  }
+}
+function on_party_request(name)
+{
+  if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
+    accept_party_request(name);
+  }
+}
