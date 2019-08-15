@@ -52,16 +52,16 @@ function buy_potions()
 
 function smart_heal()
 {
-  if(can_use("use_hp") || can_use("use_mp")){
-    if(character.hp<character.max_hp-500)
+
+    if(character.hp<character.max_hp-400 && can_use("use_hp") )
     {
       use('use_hp');
     }
-    else if(character.mp<character.max_mp-400)
+    else if(character.mp<character.max_mp-400 && can_use("use_mp"))
     {
       use('use_mp');
     }
-  }
+
 }
 
 
