@@ -1,6 +1,6 @@
 game_log("warrior");
 
-setInterval(update,1000);
+setInterval(update,1000/4);
 
 var state = "idle";
 set_state("combat_tank");
