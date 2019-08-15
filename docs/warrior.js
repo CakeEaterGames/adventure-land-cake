@@ -103,7 +103,7 @@ function combat_tank()
       }
     }
     //	if(target.target !== "CakeWarrior" && target.target !== undefined)
-    if(target.target !== "CakeWarrior")
+    if(target.target !== "CakeWarrior" && can_use("taunt"))
     {
       use_skill("taunt");
     }
