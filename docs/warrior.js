@@ -40,14 +40,18 @@ function leave_state(s) {
 
 function update()
 {
-  smart_heal();
-  loot();
+  time++;
+  if(time%100 == 0){
+    smart_heal();
+    loot();
 
-  send_cm("CakeEater", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
+    send_cm("CakeEater", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
 
-  send_cm("CakePriest", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
+    send_cm("CakePriest", "pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
 
-  update_state();
+    update_state();
+  }
+
 }
 
 

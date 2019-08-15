@@ -1,5 +1,7 @@
 change_target();
 
+var time = 0;
+
 var warrior = get_player("CakeWarrior");
 var mage = get_player("CakeEater");
 var priest = get_player("CakePriest");
