@@ -225,7 +225,7 @@ function on_party_request(name)
 function common_cm(name, data) {
   if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
     var args = data.split(' ');
-   game_log(args);
+   //game_log(args);
     switch (args[0]) {
       case "set_state":
       set_state(args[1]);
