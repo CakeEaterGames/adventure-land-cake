@@ -3,9 +3,6 @@ states:
   traveling_to_mob
   traveling_to_npc
   traveling_to_team
-  arrived_to_mob
-  arrived_to_npc
-  arrived_to_team
   combat_solo
   combat_tank
   combat_kite

@@ -119,23 +119,25 @@ var isMoving = false;
 
 function on_cm(name, data)
 {
-  var args = data.split(' ');
-  //game_log(args);
+  common_cm(name, data);
+  if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
+    var args = data.split(' ');
+    //game_log(args);
 
-  if(args[0] == "pos")
-  {
-    var l = Math.abs(character.real_x-args[1])+Math.abs(character.real_y-args[2]);
-    if(!isMoving && l >500)
+    if(args[0] == "pos")
     {
-      isMoving = true;
-      game_log("going");
-      var dest = {
-        x: character.x+(args[1]-character.x)/1.1,
-        y: character.y+(args[2]-character.y)/1.1,
-        map:args[3]
-      };
-      smart_move(dest, function(){isMoving = false;});
+      var l = Math.abs(character.real_x-args[1])+Math.abs(character.real_y-args[2]);
+      if(!isMoving && l >500)
+      {
+        isMoving = true;
+        game_log("going");
+        var dest = {
+          x: character.x+(args[1]-character.x)/1.1,
+          y: character.y+(args[2]-character.y)/1.1,
+          map:args[3]
+        };
+        smart_move(dest, function(){isMoving = false;});
+      }
     }
-
   }
 }

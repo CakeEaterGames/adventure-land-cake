@@ -28,6 +28,10 @@ function enter_state(s) {
     send_cm("CakeEater","set_state combat_solo");
     send_cm("CakePriest","set_state combat_solo");
     break;
+    case "idle":
+    send_cm("CakeEater","set_state idle");
+    send_cm("CakePriest","set_state idle");
+    break;
   }
 }
 function leave_state(s) {
