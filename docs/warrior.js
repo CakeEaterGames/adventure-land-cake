@@ -41,7 +41,7 @@ function leave_state(s) {
 function update()
 {
   time++;
-  if(time%100 == 0){
+  if(time%3 == 0){
     smart_heal();
     loot();
 
