@@ -123,11 +123,17 @@ function auto_upgrade()
   }
 }
 
+if(character.name == "CakeWarrior")
+{
+  accept_party_invite("CakeEater");
+  accept_party_invite("CakePriest");
+  accept_party_invite("CakeMerch");
+}else {
+  send_party_request("CakeWarrior");
+}
 
-send_party_request("CakeWarrior");
-send_party_request("CakeEater");
-send_party_request("CakePriest");
-send_party_request("CakeMerch");
+
+
 
 function on_party_invite(name)
 {
