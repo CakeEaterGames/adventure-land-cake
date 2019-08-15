@@ -120,7 +120,7 @@ function combat_tank()
 function on_cm(name, data)
 {
   var args = data.split(' ');
-  //game_log(args);
+  common_cm(name, data);
 
   var Length = character.items.length;
   if(args[0] == "mp_pot")
