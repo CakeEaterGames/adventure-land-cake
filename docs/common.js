@@ -20,6 +20,7 @@ function set_state(s) {
     leave_state(state);
     state = s;
     enter_state(state)
+        set_message(s);
   }
 }
 function common_update_state() {

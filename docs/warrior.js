@@ -74,7 +74,6 @@ function combat_solo()
   }
   else if(can_attack(target))
   {
-    set_message("Attacking");
     attack(target);
   }
 }
@@ -93,7 +92,6 @@ function combat_tank()
     if(target) change_target(target);
     else
     {
-      set_message("No Monsters");
       return;
     }
   }
@@ -115,7 +113,6 @@ function combat_tank()
   }
   else if(can_attack(target))
   {
-    set_message("Attacking");
     attack(target);
   }
 }

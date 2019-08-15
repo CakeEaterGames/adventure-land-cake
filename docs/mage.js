@@ -60,7 +60,6 @@ function combat_solo()
     if(target) change_target(target);
     else
     {
-      set_message("No Monsters");
       return;
     }
   }
@@ -74,7 +73,6 @@ function combat_solo()
   }
   else if(can_attack(target))
   {
-    set_message("Attacking");
     attack(target);
   }
 }
@@ -103,7 +101,6 @@ function combat_tank()
   }
   else if(can_attack(target))
   {
-    set_message("Attacking");
     attack(target);
     //use_skill("burst");
   }
@@ -124,7 +121,7 @@ function on_cm(name, data)
   if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
     var args = data.split(' ');
     //game_log(args);
-    
+
     if(args[0] == "pos")
     {
       var l = Math.abs(character.real_x-args[1])+Math.abs(character.real_y-args[2]);
