@@ -57,17 +57,17 @@ function request_potions()
 
 function combat_solo()
 {
-  loot();
   if(character.rip || is_moving(character)) return;
 
-  var  target=get_nearest_monster({min_xp:100});
-  if(target) change_target(target);
-  else
-  {
-    set_message("No Monsters");
-    return;
+  if(!target){
+    var  target=get_nearest_monster({min_xp:100});
+    if(target) change_target(target);
+    else
+    {
+      set_message("No Monsters");
+      return;
+    }
   }
-
   if(!in_attack_range(target))
   {
     move(
@@ -84,9 +84,6 @@ function combat_solo()
 }
 
 function combat_tank(){
-
-  loot();
-
   if(character.rip || is_moving(character)) return;
 
   var target=get_target_of(warrior);
