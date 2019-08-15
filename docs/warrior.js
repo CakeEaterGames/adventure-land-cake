@@ -18,8 +18,8 @@ combat_solo
 combat_tank
 combat_kite
 */
-function update_state(s) {
-  switch (s) {
+function update_state() {
+  switch (state) {
     case "combat_solo":
     combat_solo();
     break;
