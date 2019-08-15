@@ -233,7 +233,7 @@ function common_cm(name, data) {
         case "merchant_is_here":
         if(character.name != "CakeMerch"){
             give_items_to_merch();
-            send_gold(CakeMerch, 99999999);
+            send_gold("CakeMerch", 99999999);
         }
         break;
     }
