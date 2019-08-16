@@ -41,7 +41,6 @@ function update_state() {
     }else {
       auto_combine();
       auto_upgrade();
-
     }
     break;
   }

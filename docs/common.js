@@ -161,7 +161,7 @@ function auto_upgrade()
   {
     buy("scroll0");
   }
-  if(state == "upgrade" && character.q.upgrade === undefined)
+  if(character.q.upgrade === undefined)
   {
     set_message("Upgrading");
     var scrollSlot = find_item_index("scroll0");
