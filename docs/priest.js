@@ -89,15 +89,15 @@ function cooperate() {
   {
     heal(character);
   }
-  else if(warrior.hp<warrior.max_hp*0.7)
+  else if(warrior!=null && warrior.hp<warrior.max_hp*0.7)
   {
     heal(warrior);
   }
-  else if(mage.hp<mage.max_hp*0.7)
+  else if(mage!=null && mage.hp<mage.max_hp*0.7)
   {
     heal(mage);
   }
-  else if(merch.hp<merch.max_hp*0.7)
+  else if(merch!=null && merch.hp<merch.max_hp*0.7)
   {
     heal(merch);
   }
