@@ -49,13 +49,14 @@ function request_potions()
   if(quantity("mpot0")<5000) send_cm("CakeMerch", "need_mp_pot");
 }
 
+var target = null;
 function combat_solo()
 {
   loot();
   if(character.rip || is_moving(character)) return;
 
   if(!target)
-  target=get_nearest_monster();
+  var target=get_nearest_monster();
   if(!target) return;
 
   change_target(target);
@@ -79,8 +80,7 @@ function combat_tank()
   loot();
   if(character.rip || is_moving(character)) return;
 
-if(!target)
-  target=get_targeted_monster();
+  var target=get_targeted_monster();
   if(target) change_target(target);
   if(!target)
   {

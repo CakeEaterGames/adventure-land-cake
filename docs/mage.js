@@ -33,12 +33,13 @@ function request_potions()
   if(quantity("mpot0")<100) send_cm("CakeWarrior", "need_mp_pot");
 }
 
+var target = null;
 function combat_solo()
 {
-
+  loot();
   if(character.rip || is_moving(character)) return;
   if(!target){
-    target=get_nearest_monster();
+    var  target=get_nearest_monster();
     if(target) change_target(target);
     else
     {
