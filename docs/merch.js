@@ -58,6 +58,7 @@ function enter_state(s) {
     smart_move("town",function () {set_state("upgrading")});
     break;
     case "upgrading":
+    smart_move("upgrade");
     needCombining = true;
     needUpgrading = true;
     break;

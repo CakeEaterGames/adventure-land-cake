@@ -142,8 +142,8 @@ function auto_combine()
             if(item_grade(item)==0) compound(i,j,k,find_item_index("cscroll0"),offering);
             if(item_grade(item)==1) compound(i,j,k,find_item_index("cscroll1"),offering);
             done=true;
-            upgr = true;
           }
+          upgr = true;
         }
 
       }
