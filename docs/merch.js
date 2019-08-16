@@ -20,6 +20,7 @@ function update_state() {
       send_cm("CakeWarrior","merchant_is_here");
       send_cm("CakeEater","merchant_is_here");
       send_cm("CakePriest","merchant_is_here");
+      game_log("SENDING");
     }
     break;
   }
