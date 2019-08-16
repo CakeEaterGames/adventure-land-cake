@@ -27,12 +27,10 @@ function update_state() {
   switch (state) {
     case "traveling_to_team":
     if(arrived){
-
       arrived = false;
       send_cm("CakeWarrior","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
       send_cm("CakeEater","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
       send_cm("CakePriest","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
-      game_log("SENDING");
     }
     break;
   }
@@ -69,4 +67,15 @@ function on_cm(name, data)
 {
   var args = data.split(' ');
   common_cm(name, data);
+  if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
+    switch (args[0]) {
+      case "need_mp_pot":
+      send_item(name, find_item_index("mpot0"), 5000);
+      break;
+
+      case "need_hp_pot":
+      send_item(name, find_item_index("hpot0"), 5000);
+      break;
+    }
+  }
 }

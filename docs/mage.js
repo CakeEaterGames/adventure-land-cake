@@ -2,7 +2,6 @@ game_log("mage");
 
 setInterval(update,1000/4);
 
-var state = "idle"
 set_state("combat_solo");
 
 
@@ -30,28 +29,8 @@ function leave_state(s) {
 
 function request_potions()
 {
-  var needHP = true;
-  var needMP = true;
-
-  var Length = character.items.length;
-  for (var i = 0; i < Length; i++)
-  {
-    var a = character.items[i];
-    if(a)
-    {
-      if(a.name == "mpot0" && a.q>100)
-      {
-        needMP = false;
-      } else
-      if(a.name == "hpot0" && a.q>100)
-      {
-        needHP = false;
-      }
-    }
-
-  }
-  if(needHP) send_cm("CakeWarrior", "hp_pot");
-  if(needMP) send_cm("CakeWarrior", "mp_pot");
+  if(quantity("hpot0")<100) send_cm("CakeWarrior", "need_hp_pot");
+  if(quantity("mpot0")<100) send_cm("CakeWarrior", "need_mp_pot");
 }
 
 var target = null;
