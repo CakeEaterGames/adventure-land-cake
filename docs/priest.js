@@ -13,6 +13,7 @@ function update()
   loot();
   request_potions();
   update_state();
+  cooperate();
 }
 function update_state() {
   common_update_state();
@@ -82,6 +83,25 @@ function combat_solo()
   }
 }
 
+function cooperate() {
+  if(character.hp<character.max_hp*0.7)
+  {
+    heal(character);
+  }
+  else if(warrior.hp<warrior.max_hp*0.7)
+  {
+    heal(warrior);
+  }
+  else if(mage.hp<mage.max_hp*0.7)
+  {
+    heal(mage);
+  }
+  else if(merch.hp<merch.max_hp*0.7)
+  {
+    heal(merch);
+  }
+}
+
 function combat_tank(){
   if(character.rip || is_moving(character)) return;
 
@@ -89,18 +109,7 @@ function combat_tank(){
 
   //Heal amount is stored in char.attack;
 
-  if(character.hp<character.max_hp-950)
-  {
-    heal(character);
-  }
-  else if(warrior.hp<warrior.max_hp-950)
-  {
-    heal(warrior);
-  }
-  else if(mage.hp<mage.max_hp-950)
-  {
-    heal(mage);
-  }
+
 
   if(!target)
   {
