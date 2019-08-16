@@ -4,6 +4,7 @@ setInterval(update,1000/4);
 
 
 var state = "idle";
+set_state("combat_solo");
 
 function update()
 {
