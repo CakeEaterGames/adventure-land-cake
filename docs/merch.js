@@ -22,7 +22,7 @@ function enter_state(s) {
   switch (state) {
     case "buy_potions":
     buy_potions();
-
+  break;
     case "traveling_to_team":
     traveling_to_team();
     break;
