@@ -55,6 +55,7 @@ setPlayers();
 
 }
 
+var target = null;
 function combat_solo()
 {
   loot();

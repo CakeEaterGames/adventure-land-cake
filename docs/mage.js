@@ -54,6 +54,7 @@ function request_potions()
   if(needMP) send_cm("CakeWarrior", "mp_pot");
 }
 
+var target = null;
 function combat_solo()
 {
   loot();

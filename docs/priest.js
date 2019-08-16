@@ -57,7 +57,7 @@ function request_potions()
 }
 
 
-
+var target = null;
 function combat_solo()
 {
   if(character.rip || is_moving(character)) return;
