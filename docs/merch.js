@@ -27,10 +27,11 @@ function update_state() {
   switch (state) {
     case "traveling_to_team":
     if(arrived){
+
       arrived = false;
-      send_cm("CakeWarrior","merchant_is_here");
-      send_cm("CakeEater","merchant_is_here");
-      send_cm("CakePriest","merchant_is_here");
+      send_cm("CakeWarrior","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
+      send_cm("CakeEater","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
+      send_cm("CakePriest","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
       game_log("SENDING");
     }
     break;
