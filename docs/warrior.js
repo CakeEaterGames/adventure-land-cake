@@ -60,6 +60,7 @@ function combat_solo()
   loot();
   if(character.rip || is_moving(character)) return;
 
+  if(!target)
   var target=get_nearest_monster();
   if(!target) return;
 
