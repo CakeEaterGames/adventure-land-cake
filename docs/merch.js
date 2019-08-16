@@ -2,7 +2,7 @@ game_log("merch");
 
 setInterval(update,1000/4);
 
-//set_state("buy_potions");
+set_state("buy_potions");
 
 //buy_potions
 //bought_potions
@@ -64,7 +64,7 @@ function enter_state(s) {
     break;
     case "selling":
     smart_move("town");
-        setTimeout(function(){ set_state("buy_potions")}, 1000*10);
+        setTimeout(function(){ set_state("buy_potions")}, 1000*30);
     break;
   }
 }
