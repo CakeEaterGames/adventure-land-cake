@@ -14,6 +14,7 @@ function setPlayers() {
   merch = get_player("CakeMerch");
 }
 
+var state;
 function set_state(s) {
   if(s!=state)
   {
