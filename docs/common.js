@@ -20,7 +20,7 @@ function set_state(s) {
     leave_state(state);
     state = s;
     enter_state(state)
-        set_message(s);
+    set_message(s);
   }
 }
 function common_update_state() {
@@ -222,20 +222,41 @@ function on_party_request(name)
   }
 }
 
+var arrived = false;
+
 function common_cm(name, data) {
   if (name == "CakeWarrior" || name == "CakeEater" || name == "CakeMerch" || name == "CakePriest"){
     var args = data.split(' ');
-   //game_log(args);
+    //game_log(args);
     switch (args[0]) {
+
       case "set_state":
       set_state(args[1]);
       break;
-        case "merchant_is_here":
-        if(character.name != "CakeMerch"){
-            give_items_to_merch();
-            send_gold("CakeMerch", 99999999);
-        }
-        break;
+
+      case "merchant_is_here":
+      if(character.name != "CakeMerch"){
+        give_items_to_merch();
+        send_gold("CakeMerch", 99999999);
+      }
+      break;
+
+      case "get_pos":
+      send_cm(name, "recive_pos "+Math.round(character.real_x)+" "+Math.round(character.real_y) +" "+ character.map);
+      break;
+
+      case "recive_pos":
+      var l = Math.abs(character.real_x-args[1])+
+      Math.abs(character.real_y-args[2]);
+      isMoving = true;
+      var dest = {
+        x: character.x+(args[1]-character.x)/1,
+        y: character.y+(args[2]-character.y)/1,
+        map:args[3]
+      };
+      smart_move(dest,function(){ arrived = true;});
+
+      break;
     }
   }
 }
