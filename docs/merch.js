@@ -64,6 +64,7 @@ function enter_state(s) {
     break;
     case "selling":
     smart_move("town");
+        setTimeout(function(){ set_state("buy_potions")}, 1000*10);
     break;
   }
 }

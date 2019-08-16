@@ -35,13 +35,13 @@ function request_potions()
 }
 
 
-var target = null;
+
 function combat_solo()
 {
   if(character.rip || is_moving(character)) return;
 
   if(!target){
-    var  target=get_nearest_monster({min_xp:100});
+    target=get_nearest_monster({min_xp:100});
     if(target) change_target(target);
     else
     {
