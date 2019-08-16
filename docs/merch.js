@@ -20,7 +20,7 @@ function update_state() {
 function enter_state(s) {
   common_enter_state(s);
   switch (state) {
-    case: "buy_potions":
+    case "buy_potions":
     buy_potions();
 
     case "traveling_to_team":
