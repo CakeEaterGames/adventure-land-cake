@@ -38,6 +38,10 @@ function update_state() {
     case "upgrading":
     if(!needCombining && !needUpgrading){
       set_state("selling");
+    }else {
+      auto_combine();
+      auto_upgrade();
+
     }
     break;
   }
