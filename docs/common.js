@@ -114,7 +114,7 @@ function auto_combine()
     buy("cscroll0");
     return 0;
   }
-
+  var upgr = false;
   var done = false;
   if(character.q.compound === undefined)
   {
@@ -142,15 +142,14 @@ function auto_combine()
             if(item_grade(item)==0) compound(i,j,k,find_item_index("cscroll0"),offering);
             if(item_grade(item)==1) compound(i,j,k,find_item_index("cscroll1"),offering);
             done=true;
+            upgr = true;
           }
         }
-        if(i==41){
-          needCombining = false;
-        }
+
       }
 
     }
-
+    needCombining = upgr;
   }
 }
 
