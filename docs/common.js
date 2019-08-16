@@ -157,7 +157,7 @@ function auto_combine()
 var needUpgrading = true;
 function auto_upgrade()
 {
-  if(scrolls<=0)
+  if(quantity("scroll0")<=0)
   {
     buy("scroll0");
   }
@@ -177,7 +177,6 @@ function auto_upgrade()
         if(!parent.G.items[a.name].upgrade) continue;
         if(a.level<parent.G.items[a.name].grades[0]-1)
         {
-          game_log(i);
           targetSlot = i;
           break;
         }
