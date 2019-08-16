@@ -255,7 +255,7 @@ function common_cm(name, data) {
         y: character.y+(args[2]-character.y)/1,
         map:args[3]
       };
-      smart_move(dest,function(){ arrived = true;});
+      smart_move(dest,function(){game_log("ARRIVED"); arrived = true;});
 
       break;
     }
