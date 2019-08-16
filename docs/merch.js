@@ -1,7 +1,7 @@
 game_log("merch");
 
 
-set_state("buy_potions");
+//set_state("buy_potions");
 
 //buy_potions
 //bought_potions
