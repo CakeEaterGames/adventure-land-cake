@@ -144,11 +144,11 @@ function auto_combine()
             done=true;
           }
         }
+        if(i==41){
+          needCombining = false;
+        }
       }
 
-      if(i==41){
-        needCombining = false;
-      }
     }
 
   }
