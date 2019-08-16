@@ -14,7 +14,14 @@ game_log("merch");
 function update_state() {
   common_update_state();
   switch (state) {
-
+    case "traveling_to_team":
+    if(arrived){
+      arrived = false;
+      send_cm("CakeWarrior","merchant_is_here");
+      send_cm("CakeEater","merchant_is_here");
+      send_cm("CakePriest","merchant_is_here");
+    }
+    break;
   }
 }
 function enter_state(s) {
@@ -22,7 +29,7 @@ function enter_state(s) {
   switch (state) {
     case "buy_potions":
     buy_potions();
-  break;
+    break;
     case "traveling_to_team":
     traveling_to_team();
     break;
