@@ -72,16 +72,6 @@ function give_items_to_merch()
   }
 }
 
-function buy_potions()
-{
-  var x=character.real_x,y=character.real_y,map=character.map;
-  smart_move({to:"potions"},function(done){
-    buy("hpot0",1000-quantity("hpot0"));
-    buy("mpot0",5000-quantity("mpot0"));
-    game_log("Got the potions!","#4CE0CC");
-    smart_move({x:x,y:y,map:map});
-  });
-}
 
 function smart_heal()
 {
@@ -116,7 +106,7 @@ function find_item_index(name)
   return -1;
 }
 
-
+var needCombining = true;
 function auto_combine()
 {
   if(quantity("cscroll0")<=0)
@@ -155,13 +145,22 @@ function auto_combine()
           }
         }
       }
+
+      if(i==41){
+        needCombining = false;
+      }
     }
+
   }
 }
 
-
+var needUpgrading = true;
 function auto_upgrade()
 {
+  if(scrolls<=0)
+  {
+    buy("scroll0");
+  }
   if(state == "upgrade" && character.q.upgrade === undefined)
   {
     set_message("Upgrading");
@@ -184,12 +183,9 @@ function auto_upgrade()
         }
       }
     }
-    if(scrolls<=0)
-    {
-      buy("scroll0");
-      return 0;
+    if(targetSlot == -1){
+      needUpgrading = false;
     }
-
     upgrade(targetSlot,scrollSlot);
   }
 }

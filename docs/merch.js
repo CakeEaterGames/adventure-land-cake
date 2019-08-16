@@ -31,6 +31,13 @@ function update_state() {
       send_cm("CakeWarrior","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
       send_cm("CakeEater","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
       send_cm("CakePriest","merchant_is_here "+Math.round(character.real_x)+" "+Math.round(character.real_y));
+      setTimeout(function(){ set_state("traveling_to_town")}, 1000*10);
+    }
+    break;
+
+    case "upgrading":
+    if(!needCombining && !needUpgrading){
+      set_state("selling");
     }
     break;
   }
@@ -43,6 +50,16 @@ function enter_state(s) {
     break;
     case "traveling_to_team":
     traveling_to_team();
+    break;
+    case "traveling_to_town":
+    smart_move("town",function () {set_state("upgrading")});
+    break;
+    case "upgrading":
+    needCombining = true;
+    needUpgrading = true;
+    break;
+    case "selling":
+    smart_move("town");
     break;
   }
 }
