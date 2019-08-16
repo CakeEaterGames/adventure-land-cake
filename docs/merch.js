@@ -1,5 +1,6 @@
 game_log("merch");
 
+setInterval(update,1000/4);
 
 //set_state("buy_potions");
 
@@ -10,6 +11,16 @@ game_log("merch");
 //traveling_to_town
 //upgrading
 //selling
+
+function update()
+{
+  time++;
+  setPlayers();
+  smart_heal();
+  loot();
+  update_state();
+}
+
 
 function update_state() {
   common_update_state();
