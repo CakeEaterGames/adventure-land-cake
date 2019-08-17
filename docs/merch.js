@@ -64,7 +64,7 @@ function enter_state(s) {
     break;
     case "selling":
     smart_move("town");
-        setTimeout(function(){ set_state("buy_potions")}, 1000*60*10);
+    setTimeout(function(){ set_state("buy_potions")}, 1000*60*10);
     break;
   }
 }
@@ -75,8 +75,8 @@ function leave_state(s) {
 function buy_potions()
 {
   smart_move({to:"potions"},function(done){
-    buy("hpot0",5000-quantity("hpot0"));
-    buy("mpot0",5000-quantity("mpot0"));
+    if(quantity("hpot0")<5000)     buy("hpot0",5000-quantity("hpot0"));
+    if(quantity("mpot0")<5000)     buy("mpot0",5000-quantity("mpot0"));
     set_state("traveling_to_team");
   });
 }
