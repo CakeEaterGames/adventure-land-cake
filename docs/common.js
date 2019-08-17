@@ -239,6 +239,7 @@ function common_cm(name, data) {
         smart_move(dest,function(){
           give_items_to_merch();
           send_gold("CakeMerch", 99999999);
+          request_potions();
         });
 
       }

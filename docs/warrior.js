@@ -126,6 +126,9 @@ function on_cm(name, data)
       case "need_hp_pot":
       send_item(name, find_item_index("hpot0"), 100);
       break;
+      case "merchant_is_here":
+
+      break;
     }
   }
 }
